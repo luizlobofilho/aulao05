@@ -1,13 +1,9 @@
 package com.devsuperior.myfirstproject.entites;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
-public class Category implements Serializable {
+public class Product implements Serializable {
 
     private static final long serialVersionUID;
 
@@ -17,17 +13,18 @@ public class Category implements Serializable {
 
     private Long id;
     private String name;
+    private Double price;
 
-    @JsonIgnore
-    private List<Product> products = new ArrayList<>();
+    private Category category;
 
-    public Category() {
-
+    public Product() {
     }
 
-    public Category(Long id, String name) {
+    public Product(Long id, String name, Double price, Category category) {
         this.id = id;
         this.name = name;
+        this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -46,16 +43,28 @@ public class Category implements Serializable {
         this.name = name;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return id.equals(category.id);
+        Product product = (Product) o;
+        return id.equals(product.id);
     }
 
     @Override
